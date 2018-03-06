@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guestbook</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <h1>Guestbook list</h1>
+
+    {% for guestbook in list %}
+        <p><a href="/guestbook/{{ guestbook.key.id() }}"><b>Full name: </b>{{ guestbook.fullname }}</a>
+    {% endfor %}
+</body>
+</html>
