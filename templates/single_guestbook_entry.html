@@ -12,5 +12,7 @@
         <p><b>Email:</b>  {{ guestbook.email }}</p>
         <p><b>Message</b> {{ guestbook.message }}</p>
         <p><b>Entry made:</b> {{ guestbook.entrymade }}</p>
+
+        <a href="/guestbook/{{ guestbook.key.id() }}/modify"><b>Modify</b></a>
 </body>
 </html>

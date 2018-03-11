@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify Guestbook</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+<body>
+<form action="/guestbook/{{ guestbook.key.id() }}/modify" method="post">
+    <p>Full name: </p><input name="fullname" value="{{ guestbook.fullname }}">
+    <p>Email: </p><input name="email" value="{{ guestbook.email }}">
+    <p>Message: </p><input name="message" value="{{ guestbook.message }}">
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
