@@ -79,7 +79,7 @@ class ModifyGuestBookHandler(BaseHandler):
         guestbook.email = email
         guestbook.message = message
         guestbook.put()
-        
+
         time.sleep(0.1)
         return self.redirect_to('guestbook')
 
