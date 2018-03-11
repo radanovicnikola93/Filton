@@ -2,6 +2,7 @@
 import os
 import jinja2
 import webapp2
+import time
 from models import GuestBook
 
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
@@ -32,24 +33,26 @@ class MainHandler(BaseHandler):
         return self.render_template("index.html")
 
 
-class RezultatHandler(BaseHandler):
-    def post(self):
-        fullname = self.request.get('fullname')
-        email = self.request.get('email')
-        message = self.request.get('message')
-
-
-        guestbook = GuestBook(fullname=fullname, email=email, message=message)
-        guestbook.put()
-
-        return self.write(fullname)
-
 class GuestBookHandler(BaseHandler):
     def get(self):
         list = GuestBook.query(GuestBook.delete == False).fetch()
         params = {'list': list}
 
         return self.render_template('guestbook.html', params=params)
+
+    def post(self):
+        fullname = self.request.get('fullname')
+        email = self.request.get('email')
+        message = self.request.get('message')
+
+        if not fullname:
+            fullname = 'Anonymous'
+
+        guestbook = GuestBook(fullname=fullname, email=email, message=message)
+        guestbook.put()
+        time.sleep(0.1)
+        return self.redirect_to('guestbook')
+
 
 class GuestbookDetails(BaseHandler):
     def get(self, guestbook_id):
@@ -84,14 +87,14 @@ class DeleteGuestBookHandler(BaseHandler):
         guestbook = GuestBook.get_by_id(int(guestbook_id))
         guestbook.delete = True
         guestbook.put()
+
         return self.redirect_to('guestbook')
 
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler),
-    webapp2.Route('/rezultat', RezultatHandler),
+    webapp2.Route('/guestbook', GuestBookHandler, name='guestbook'),
     webapp2.Route('/guestbook', GuestBookHandler),
     webapp2.Route('/guestbook/<guestbook_id:\d+>', GuestbookDetails),
     webapp2.Route('/guestbook/<guestbook_id:\d+>/modify', ModifyGuestBookHandler),
-    webapp2.Route('/guestbook/', GuestBookHandler, name='guestbook'),
     webapp2.Route('/guestbook/<guestbook_id:\d+>/delete', DeleteGuestBookHandler),
 ], debug=True)
