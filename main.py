@@ -46,7 +46,7 @@ class RezultatHandler(BaseHandler):
 
 class GuestBookHandler(BaseHandler):
     def get(self):
-        list = GuestBook.query().fetch()
+        list = GuestBook.query(GuestBook.delete == False).fetch()
         params = {'list': list}
 
         return self.render_template('guestbook.html', params=params)
@@ -74,6 +74,18 @@ class ModifyGuestBookHandler(BaseHandler):
         guestbook.put()
         return self.redirect_to('guestbook')
 
+class DeleteGuestBookHandler(BaseHandler):
+    def get(self, guestbook_id):
+        guestbook = GuestBook.get_by_id(int(guestbook_id))
+        params = {'guestbook': guestbook}
+        return self.render_template('delete_guestbook.html', params=params)
+
+    def post(self, guestbook_id):
+        guestbook = GuestBook.get_by_id(int(guestbook_id))
+        guestbook.delete = True
+        guestbook.put()
+        return self.redirect_to('guestbook')
+
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler),
     webapp2.Route('/rezultat', RezultatHandler),
@@ -81,4 +93,5 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/guestbook/<guestbook_id:\d+>', GuestbookDetails),
     webapp2.Route('/guestbook/<guestbook_id:\d+>/modify', ModifyGuestBookHandler),
     webapp2.Route('/guestbook/', GuestBookHandler, name='guestbook'),
+    webapp2.Route('/guestbook/<guestbook_id:\d+>/delete', DeleteGuestBookHandler),
 ], debug=True)

@@ -5,3 +5,4 @@ class GuestBook(ndb.Model):
     email = ndb.StringProperty()
     message = ndb.StringProperty()
     entrymade = ndb.DateTimeProperty(auto_now_add=True)
+    delete = ndb.BooleanProperty(default=False)

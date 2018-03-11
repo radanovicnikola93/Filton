@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete guestbook</title>
+
+</head>
+<body>
+    <p>Are you sure you want to delete your Guestbook entry details?</p>
+
+    <form action="/guestbook/{{ guestbook.key.id() }}/delete" method="post">
+
+        <button type="submit">YES</button>
+
+
+    </form>
+</body>
+</html>
