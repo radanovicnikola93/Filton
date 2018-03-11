@@ -48,9 +48,13 @@ class GuestBookHandler(BaseHandler):
         if not fullname:
             fullname = 'Anonymous'
 
-        guestbook = GuestBook(fullname=fullname, email=email, message=message)
+        if '<script>' in message:
+            return self.write("You can't inject your JavaScript here!")
+
+        guestbook = GuestBook(fullname=fullname, email=email, message=message.replace('<script>', ''))
         guestbook.put()
-        time.sleep(0.1)
+
+        time.sleep(0.1) # quicker refresh rate
         return self.redirect_to('guestbook')
 
 
