@@ -92,6 +92,7 @@ class DeleteGuestBookHandler(BaseHandler):
         guestbook.delete = True
         guestbook.put()
 
+        time.sleep(0.1)
         return self.redirect_to('guestbook')
 
 app = webapp2.WSGIApplication([

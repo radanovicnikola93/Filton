@@ -16,17 +16,19 @@
 
 </form>
 
-    <h3>Guestbook list</h3>
+    <hr>
+    <h3>Guestbook messages</h3>
 
     {% for guestbook in list %}
-        <p><a href="/guestbook/{{ guestbook.key.id() }}">{{ guestbook.fullname }}</a> at {{ guestbook.entrymade.strftime('%d %B %Y at %H:%M') }}
-        <p>{{ guestbook.guestbook }}</p>
+        <p>Full name: <a href="/guestbook/{{ guestbook.key.id() }}"><i><b>{{ guestbook.fullname }}</b></i></a> at {{ guestbook.entrymade.strftime('%d %B %Y at %H:%M') }}
+        <p>Message: {{ guestbook.message }}</p>
         <div id="edit"><a href="/guestbook/{{ guestbook.key.id() }}/modify"><b><i>Modify</i></b></a></div>
         <div id="delete"><a href="/guestbook/{{ guestbook.key.id() }}/delete"><b><i>Delete</i></b></a></div>
         <br>
-
+    <hr>
     {% else %}
             <p>No messages yet.</p>
     {% endfor %}
+
 
 {% endblock page_content %}

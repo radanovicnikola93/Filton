@@ -14,9 +14,13 @@ h1, h3  {
 
 a {
     text-decoration: none;
-    color: white;
+    color: lightblue;
 }
 
+a:hover {
+    text-decoration: none;
+    color: blue;
+}
 img {
     display: block;
     margin-left: auto;

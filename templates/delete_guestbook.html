@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete guestbook</title>
+{% extends "base.html" %}
 
-</head>
-<body>
-    <p>Are you sure you want to delete your Guestbook entry details?</p>
+{% block title %}Delete Message{% endblock title %}
 
-    <form action="/guestbook/{{ guestbook.key.id() }}/delete" method="post">
+{% block page_content %}
 
-        <button type="submit">YES</button>
-    </form>
-</body>
-</html>
+<p>Are you sure you want to delete your Guestbook entry details?</p>
+
+<form action="/guestbook/{{ guestbook.key.id() }}/delete" method="post">
+
+    <button type="submit">YES</button>
+
+
+</form>
+{% endblock page_content %}

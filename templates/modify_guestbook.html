@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Modify Guestbook</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+{% extends "base.html" %}
 
-</head>
-<body>
+{% block title %}Edit Message{% endblock title %}
+
+{% block page_content %}
+
+<h3>Please edit your Guestbook entry</h3>
+
 <form action="/guestbook/{{ guestbook.key.id() }}/modify" method="post">
-    <p>Full name: </p><input name="fullname" value="{{ guestbook.fullname }}">
-    <p>Email: </p><input name="email" value="{{ guestbook.email }}">
-    <p>Message: </p><input name="message" value="{{ guestbook.message }}">
-
-    <button type="submit">Submit</button>
+    <p>Full name: <input name="fullname" value="{{ guestbook.fullname }}"></p>
+    <p>Email: <input name="email" value="{{ guestbook.email }}"></p>
+    <p><textarea name="message" cols="30" rows="10">{{ guestbook.message }}</textarea></p>
 </form>
-</body>
-</html>
+<button type="submit">Edit</button>
+{% endblock page_content %}
