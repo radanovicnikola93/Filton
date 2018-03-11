@@ -14,9 +14,7 @@
         <p><b>Entry made:</b> {{ guestbook.entrymade }}</p>
 
         <br>
-        <a href="/guestbook/{{ guestbook.key.id() }}/modify"><b><i>Modify</i></b></a>
-        <br>
-        <br>
-        <a href="/guestbook/{{ guestbook.key.id() }}/delete"><b><i>Delete</i></b></a>
+        <div id="edit"><a href="/guestbook/{{ guestbook.key.id() }}/modify"><b><i>Modify</i></b></a></div>
+        <div id="delete"><a href="/guestbook/{{ guestbook.key.id() }}/delete"><b><i>Delete</i></b></a></div>
 </body>
 </html>

@@ -19,7 +19,11 @@
     <h3>Guestbook list</h3>
 
     {% for guestbook in list %}
-        <p><a href="mailto:{{guestbook.email}}">{{ guestbook.fullname }}</a> at {{ guestbook.entrymade.strftime('%d %B %Y at %H:%M') }}
+        <p><a href="/guestbook/{{ guestbook.key.id() }}">{{ guestbook.fullname }}</a> at {{ guestbook.entrymade.strftime('%d %B %Y at %H:%M') }}
+        <p>{{ guestbook.guestbook }}</p>
+        <div id="edit"><a href="/guestbook/{{ guestbook.key.id() }}/modify"><b><i>Modify</i></b></a></div>
+        <div id="delete"><a href="/guestbook/{{ guestbook.key.id() }}/delete"><b><i>Delete</i></b></a></div>
+        <br>
 
     {% else %}
             <p>No messages yet.</p>
