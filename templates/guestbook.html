@@ -1,15 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Guestbook</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
-    <h1>Guestbook list</h1>
+{% extends 'base.html' %}
+
+{% block title %} Guestbook {% endblock title %}
+
+{% block page_content %}
+
+<form method="post">
+
+    <h3>Please leave your message</h3>
+
+    <p>Full name: <input type="text" name="fullname"></p>
+    <p>Email: <input type="text" name="email"></p>
+    <p><textarea name="message" cols="30" rows="10" placeholder="Enter your message"></textarea></p>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+    <h3>Guestbook list</h3>
 
     {% for guestbook in list %}
-        <p><a href="/guestbook/{{ guestbook.key.id() }}"><b>Full name: </b>{{ guestbook.fullname }}</a>
+        <p><a href="mailto:{{guestbook.email}}">{{ guestbook.fullname }}</a> at {{ guestbook.entrymade.strftime('%d %B %Y at %H:%M') }}
+
+    {% else %}
+            <p>No messages yet.</p>
     {% endfor %}
-</body>
-</html>
+
+{% endblock page_content %}

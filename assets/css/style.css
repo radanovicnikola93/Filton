@@ -2,14 +2,23 @@ body {
     background-color: black;
     color: white;
     font-family: arial;
+    text-align: center;
 }
 
-h1  {
+h1, h3  {
     text-align: center;
-    color: red;
+    color: blue;
 }
+
+
 
 a {
     text-decoration: none;
     color: white;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-            <meta charset="UTF-8">
-            <title>Result</title>
-        <link rel="stylesheet" href="/assets/css/style.css">
-    </head>
+{% extends 'base.html' %}
 
-    <body>
-            <form action="/rezultat" method="post">
-                <p>Full name: </p><input name="fullname">
-                <p>Email: </p><input name="email">
-                <p>Message: </p><input name="message">
-                <br>
-                <button type="submit">Submit</button>
-            </form>
-    </body>
-</html>
+{% block title %} Main page {% endblock title %}
+
+{% block page_content %}
+
+<h1>Welcome to Filton hotel</h1>
+
+<img src="/assets/img/filton.jpg" alt="Filton Hotel image" width="1000px" height="500px">
+
+{% endblock page_content %}
